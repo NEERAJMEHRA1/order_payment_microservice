@@ -1,0 +1,207 @@
+{
+    "openapi": "3.0.2",
+    "info": {
+        "version": "1.0.0",
+        "title": "Testing swagger",
+        "termsOfService": "http://swagger.io/terms/",
+        "contact": {
+            "email": ""
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        }
+    },
+    "servers": [
+        {
+            "url": "http://localhost:3000"
+        }
+    ],
+    "security": [
+        {
+            "bearerAuth": []
+        }
+    ],
+    "paths": {
+        "/orders/createOrder": {
+            "post": {
+                "tags": [
+                    "ORDERS"
+                ],
+                "summary": "Method used to create orders",
+                "security": [],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "contentType"
+                                ],
+                                "properties": {
+                                    "product": {
+                                        "type": "string",
+                                        "default": "Testing"
+                                    },
+                                    "amount": {
+                                        "type": "number",
+                                        "default": 300
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "boolean"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "unexpected error"
+                    }
+                }
+            }
+        },
+        "/orders/getOrderDetail": {
+            "get": {
+                "tags": [
+                    "ORDERS"
+                ],
+                "summary": "Method used to get order details by id",
+                "security": [],
+                "parameters": [
+                    {
+                        "name": "orderId",
+                        "default": "",
+                        "in": "query",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "boolean"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "unexpected error"
+                    }
+                }
+            }
+        },
+        "/orders/updateOrderDetail": {
+            "put": {
+                "tags": [
+                    "ORDERS"
+                ],
+                "summary": "Method used to update order data",
+                "security": [],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "contentType"
+                                ],
+                                "properties": {
+                                    "orderId": {
+                                        "type": "string",
+                                        "default": ""
+                                    },
+                                    "orderName": {
+                                        "type": "string",
+                                        "default": "Update order"
+                                    },
+                                    "orderPrice": {
+                                        "type": "number",
+                                        "default": 30
+                                    },
+                                    "orderDescription": {
+                                        "type": "string",
+                                        "default": "Update description"
+                                    },
+                                    "discount": {
+                                        "type": "number",
+                                        "default": 15
+                                    },
+                                    "orderImages": {
+                                        "type": "array",
+                                        "default": []
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "boolean"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "unexpected error"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "scheme": "bearer",
+                "bearerFormat": "JWT"
+            }
+        }
+    }
+}
